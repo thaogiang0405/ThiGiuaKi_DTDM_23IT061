@@ -1,19 +1,66 @@
-<h2>Thêm Sách Mới</h2>
-<form action="/add-book" method="POST">
-    <input type="text" name="code" placeholder="Mã sách (Bắt đầu bằng 061)" required>
-    <input type="text" name="name" placeholder="Tên sách" required>
-    <input type="number" name="price" placeholder="Giá tiền gốc" required>
-    <button type="submit">Thêm Sách</button>
-</form>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        
+        <!-- Khối nhập liệu (Thêm Sách) -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Thêm Sách Mới</h4>
+            </div>
+            <div class="card-body">
+                <form action="/add-book" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Mã sách (Bắt buộc bắt đầu bằng 061)</label>
+                        <input type="text" name="code" class="form-control" placeholder="Ví dụ: 061001" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tên sách</label>
+                        <input type="text" name="name" class="form-control" placeholder="Nhập tên sách..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Giá tiền gốc (VNĐ)</label>
+                        <input type="number" name="price" class="form-control" placeholder="Ví dụ: 150000" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 fw-bold">Thêm Sách Lên Đám Mây</button>
+                </form>
+            </div>
+        </div>
 
-<h2>Danh sách Sách</h2>
-<ul>
-    {{#each books}}
-        <li>[{{this.code}}] {{this.name}} - Giá sau thuế: {{this.priceAfterTax}}</li>
-    {{/each}}
-</ul>
-<hr>
-<!-- Footer bắt buộc chứa thông tin cá nhân[cite: 10] -->
-<footer>
-    <p>Họ tên: {{hoTen}} | MSSV: {{mssv}} | Mức VAT áp dụng: {{vat}}%</p>
-</footer>
+        <!-- Khối hiển thị dữ liệu (Danh Sách) -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Danh Sách Quản Lý</h4>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover table-bordered mb-0">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>Mã Sách</th>
+                            <th>Tên Sách</th>
+                            <th>Giá sau thuế (+5% VAT)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each books}}
+                        <tr>
+                            <td class="text-center"><strong>{{this.code}}</strong></td>
+                            <td>{{this.name}}</td>
+                            <td class="text-center text-danger fw-bold">{{this.priceAfterTax}} VNĐ</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer bắt buộc của đề bài -->
+        <footer class="text-center mt-4 mb-5 text-muted">
+            <hr>
+            <p class="mb-0">
+                <strong>Họ tên:</strong> {{hoTen}} | 
+                <strong>MSSV:</strong> {{mssv}} | 
+                <strong>Mức VAT áp dụng:</strong> <span class="badge bg-warning text-dark">{{vat}}%</span>
+            </p>
+        </footer>
+
+    </div>
+</div>
